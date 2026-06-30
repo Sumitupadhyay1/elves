@@ -18,11 +18,11 @@ Guest Operating system - Ubuntu 24.04.4 LTS (Noble Numbat)
 The test cases published in this repository are validated with the following component versions:
 - **Baremetal OS kernel**:
     * Minimum upstream kernel version: v6.14
-    * Latest tested upstream stable version: v6.19.4
+    * Latest tested upstream stable version: v7.0.10
 - **KVM guest kernel**:
-    * upstream stable version: v6.19.4
+    * upstream stable version: v7.0.10
 - **QEMU**: v10.1.4
-- **OVMF (EDK2)**: edk2-stable202602
+- **OVMF (EDK2)**: edk2-stable202605
 
 ### Supported Hardware
 AMD EPYC 3rd Generation Processors Family 19h (codenamed "Milan")<br>
@@ -71,7 +71,7 @@ AMD EPYC 5th Generation processors Family 1Ah (codenamed "Turin")
         sysfs-qos-rmid-pin-test.py
     buslock/
     io/iommu/
-        iommu_tests.py
+        iommu_tests.py (now also covers PASID, ATS and PRI feature detection)
         amd/iommu_v2pgmode_test.py
         interrupt.py
         sva.py
@@ -84,6 +84,7 @@ AMD EPYC 5th Generation processors Family 1Ah (codenamed "Turin")
         cxl-numa.py
         daxctl.py
         uefi.py
+        online-offline.py
     cpu/
         rapl-core-energy.py
         rapl-pkg-energy.py
@@ -93,19 +94,22 @@ AMD EPYC 5th Generation processors Family 1Ah (codenamed "Turin")
         em_cpuidle.py
         amd_cpu_topology.py
         fred.py
+        avx512.py
     kernel/
         srso_mitigation.py
         tlbi_test.py
         kselftest.py used to run below AMD EPYC Feature specific test
             kvm: kvm_buslock_test
             cpufreq: basic, sptest1, sptest2
+            iommufd: iommufd selftests
+            vfio: vfio selftests
     ```
     There exists a readme file in each of above the test directories explaining the feature and the input requirements.
 
     Below are the current AMD EPYC virtualization Feature specific test cases hosted in [tp-qemu](https://github.com/AMDESE/tp-qemu/tree/AMD_elves)
     ```
     AMD CVM guest boot tests: qemu/tests/amd_cvm_boot.py
-    AMD SNP guest attestation: qemu/tests/snp_attestation.py
+    AMD SNP guest attestation (VMPL- and measurement-aware, with launch-measurement verification): qemu/tests/snp_basic_config.py along with qemu/tests/cfg/snp_attestation.cfg
     Idle HLT Intercept: qemu/tests/idlehlt.py
     EPYC-cpu model verification: qemu/tests/x86_cpu_model.py
     SNP host kernel parameter verification: qemu/tests/test_snp_params.py
