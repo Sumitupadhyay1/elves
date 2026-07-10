@@ -14,6 +14,8 @@ in a virtual machine environment.
 Host Operating system - Ubuntu 24.04.4 LTS (Noble Numbat)<br>
 Guest Operating system - Ubuntu 24.04.4 LTS (Noble Numbat)
 
+Additional downstream host operating systems, validated component levels, and run instructions are maintained on the [`downstream` branch](https://github.com/AMDESE/elves/tree/downstream); see [`downstream/README.md`](https://github.com/AMDESE/elves/blob/downstream/downstream/README.md) there.
+
 ### Supported component versions
 The test cases published in this repository are validated with the following component versions:
 - **Baremetal OS kernel**:
@@ -130,6 +132,7 @@ AMD EPYC 5th Generation processors Family 1Ah (codenamed "Turin")
     Running only virtualization testcases:
     python3 ./avocado-setup.py --nrunner --vt qemu --run-suite guest_AMD_elves --guest-os 24.04-server.x86_64 --no-download
     ```
+
 The ELVES project is forked from [tests](https://github.com/lop-devops/tests). We intend to funnel relevant changes back to the parent project. If you encounter any issues related to the AMD platform-specific IP testcases listed above, we kindly ask that you open a GitHub issue in this repository. Please provide detailed information following the bug report template to help us address the problem efficiently.
 
 For any issues related to the parent project or other projects mentioned in the references section, we encourage you to open an issue in the respective parent repository. Since all referenced projects are open-source, you are also welcome to contribute directly to them.
